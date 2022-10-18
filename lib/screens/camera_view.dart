@@ -10,7 +10,7 @@ class CameraView extends StatefulWidget {
 }
 
 @override
-class _CameraViewState extends State<CameraView> {
+class _CameraViewState extends State<CameraView> with WidgetsBindingObserver {
   late List<CameraDescription> camera;
   CameraController? controller;
   XFile? lastImage;

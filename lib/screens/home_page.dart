@@ -13,7 +13,7 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
+class _MyHomePageState extends State<MyHomePage> {
   final List<Map<String, dynamic>> tabBar = [
     {'title': 'Camera', 'icon': CupertinoIcons.camera},
     {'title': 'Images', 'icon': CupertinoIcons.graph_square_fill},
