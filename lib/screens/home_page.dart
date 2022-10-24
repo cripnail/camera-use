@@ -34,22 +34,19 @@ class _MyHomePageState extends State<MyHomePage> {
       tabBar: CupertinoTabBar(
         items: _nav.map((item) {
           return BottomNavigationBarItem(
-            // ignore: deprecated_member_use
             label: item.title,
             icon: Icon(item.icon),
           );
         }).toList(),
       ),
-      // ignore: missing_return
       tabBuilder: (BuildContext context, int index) {
         switch (index) {
           case 0:
             return const CameraView();
-            break;
           case 1:
             return const ImagesView();
-            break;
           default:
+            return const Text('404 page not found');
         }
       },
     );
