@@ -1,7 +1,10 @@
+import 'package:camera/camera.dart';
 import 'package:flutter/cupertino.dart';
-
+import 'dart:io';
 import '../nav.dart';
+import 'camera_screen.dart';
 import 'camera_view.dart';
+import 'gallery_screen.dart';
 import 'images_view.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -18,7 +21,8 @@ class _MyHomePageState extends State<MyHomePage> {
     {'title': 'Camera', 'icon': CupertinoIcons.camera},
     {'title': 'Images', 'icon': CupertinoIcons.graph_square_fill},
   ];
-
+  late final List<CameraDescription> cameras;
+  late List<File> capturedImages = [];
   late List<Nav> _nav;
 
   @override
@@ -42,9 +46,9 @@ class _MyHomePageState extends State<MyHomePage> {
       tabBuilder: (BuildContext context, int index) {
         switch (index) {
           case 0:
-            return const CameraView();
+            return CameraScreen(cameras: cameras);
           case 1:
-            return const ImagesView();
+            return GalleryScreen(images: capturedImages);
           default:
             return const Text('404 page not found');
         }
