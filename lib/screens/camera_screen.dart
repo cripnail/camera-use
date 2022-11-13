@@ -87,7 +87,7 @@ class CameraScreenState extends State<CameraScreen> {
                       ));
                     }
                   },
-                  icon: Icon(Icons.switch_camera_rounded, color: Colors.white),
+                  icon: const Icon(Icons.switch_camera_rounded, color: Colors.white),
                 ),
                 GestureDetector(
                   onTap: () async {
