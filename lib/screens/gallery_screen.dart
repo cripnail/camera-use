@@ -10,7 +10,7 @@ class GalleryScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Gallery'),
+        title: const Text('Gallery'),
       ),
       body: GridView.count(
         crossAxisCount: 3,

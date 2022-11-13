@@ -7,16 +7,17 @@ import 'gallery_screen.dart';
 
 class CameraScreen extends StatefulWidget {
   final List<CameraDescription> cameras;
+
   const CameraScreen({
     Key? key,
     required this.cameras,
   }) : super(key: key);
 
   @override
-  _CameraScreenState createState() => _CameraScreenState();
+  CameraScreenState createState() => CameraScreenState();
 }
 
-class _CameraScreenState extends State<CameraScreen> {
+class CameraScreenState extends State<CameraScreen> {
   @override
   void initState() {
     initializeCamera(selectedCamera); //Initially selectedCamera = 0
@@ -25,7 +26,7 @@ class _CameraScreenState extends State<CameraScreen> {
 
   late CameraController _controller; //To control the camera
   late Future<void>
-  _initializeControllerFuture; //Future to wait until camera initializes
+      _initializeControllerFuture; //Future to wait until camera initializes
   int selectedCamera = 0;
   List<File> capturedImages = [];
 
@@ -66,7 +67,7 @@ class _CameraScreenState extends State<CameraScreen> {
               }
             },
           ),
-          Spacer(),
+          const Spacer(),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
             child: Row(
@@ -80,9 +81,9 @@ class _CameraScreenState extends State<CameraScreen> {
                         initializeCamera(selectedCamera);
                       });
                     } else {
-                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                         content: Text('No secondary camera found'),
-                        duration: const Duration(seconds: 2),
+                        duration: Duration(seconds: 2),
                       ));
                     }
                   },
@@ -99,7 +100,7 @@ class _CameraScreenState extends State<CameraScreen> {
                   child: Container(
                     height: 60,
                     width: 60,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       shape: BoxShape.circle,
                       color: Colors.white,
                     ),
@@ -121,8 +122,8 @@ class _CameraScreenState extends State<CameraScreen> {
                       border: Border.all(color: Colors.white),
                       image: capturedImages.isNotEmpty
                           ? DecorationImage(
-                          image: FileImage(capturedImages.last),
-                          fit: BoxFit.cover)
+                              image: FileImage(capturedImages.last),
+                              fit: BoxFit.cover)
                           : null,
                     ),
                   ),
@@ -130,7 +131,7 @@ class _CameraScreenState extends State<CameraScreen> {
               ],
             ),
           ),
-          Spacer(),
+          const Spacer(),
         ],
       ),
     );

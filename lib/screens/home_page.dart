@@ -3,9 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'dart:io';
 import '../nav.dart';
 import 'camera_screen.dart';
-import 'camera_view.dart';
 import 'gallery_screen.dart';
-import 'images_view.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
@@ -29,7 +27,6 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     super.initState();
     _nav = tabBar.map((item) => Nav.fromMap(item)).toList();
-    // unwaited(initCamera());
   }
 
   @override
