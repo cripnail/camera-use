@@ -1,8 +1,8 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:media/screens/take_picture_screen.dart';
 import 'dart:io';
 import '../nav.dart';
-import 'camera_screen.dart';
 import 'gallery_screen.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -14,12 +14,12 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
   final List<Map<String, dynamic>> tabBar = [
     {'title': 'Camera', 'icon': CupertinoIcons.camera},
     {'title': 'Images', 'icon': CupertinoIcons.graph_square_fill},
   ];
-  late final List<CameraDescription> cameras;
+  late CameraDescription camera;
   late List<File> capturedImages = [];
   late List<Nav> _nav;
 
@@ -43,7 +43,7 @@ class _MyHomePageState extends State<MyHomePage> {
       tabBuilder: (BuildContext context, int index) {
         switch (index) {
           case 0:
-            return CameraScreen(cameras: cameras);
+            return TakePictureScreen(title: widget.title);
           case 1:
             return GalleryScreen(images: capturedImages);
           default:
