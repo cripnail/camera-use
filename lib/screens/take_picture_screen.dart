@@ -17,7 +17,7 @@ class TakePictureScreen extends StatefulWidget {
 class _TakePictureScreenState extends State<TakePictureScreen>
     with WidgetsBindingObserver {
   late final List<CameraDescription> cameras;
-  late CameraController? controller;
+  CameraController? controller;
   XFile? lastImage;
 
   @override
@@ -42,7 +42,7 @@ class _TakePictureScreenState extends State<TakePictureScreen>
   Future<void> initCamera() async {
     cameras = await availableCameras();
     controller = CameraController(cameras[0], ResolutionPreset.max);
-    await controller?.initialize();
+    await controller!.initialize();
     setState(() {});
   }
 
