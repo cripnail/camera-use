@@ -65,16 +65,12 @@ class _TakePictureScreenState extends State<TakePictureScreen>
                       padding: const EdgeInsets.all(8.0),
                       child: Container(
                           decoration: BoxDecoration(
-                              border: Border.all(
-                            color: Colors.black,
-                            width: 2.0,
-                          )),
+                              border:
+                                  Border.all(color: Colors.black, width: 2.0)),
                           width: 120.0,
                           height: 240.0,
-                          child: Image.file(
-                            File(lastImage!.path),
-                            fit: BoxFit.cover,
-                          ))),
+                          child: Image.file(File(lastImage!.path),
+                              fit: BoxFit.cover))),
                 ),
               Align(
                   alignment: Alignment.bottomCenter,
