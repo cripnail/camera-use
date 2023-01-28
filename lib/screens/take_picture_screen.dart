@@ -74,13 +74,16 @@ class _TakePictureScreenState extends State<TakePictureScreen>
                 ),
               Align(
                   alignment: Alignment.bottomCenter,
-                  child: IconButton(
-                    iconSize: 48.0,
-                    onPressed: () async {
-                      lastImage = await controller?.takePicture();
-                      setState(() {});
-                    },
-                    icon: const Icon(Icons.camera),
+                  child: Padding(
+                    padding: const EdgeInsets.only(bottom: 98.0),
+                    child: IconButton(
+                      iconSize: 48.0,
+                      onPressed: () async {
+                        lastImage = await controller?.takePicture();
+                        setState(() {});
+                      },
+                      icon: const Icon(Icons.camera),
+                    ),
                   ))
             ],
           ),
