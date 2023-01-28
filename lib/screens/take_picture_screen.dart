@@ -5,6 +5,8 @@ import 'package:camera/camera.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+import 'gallery_screen.dart';
+
 class TakePictureScreen extends StatefulWidget {
   final String title;
 
@@ -19,6 +21,7 @@ class _TakePictureScreenState extends State<TakePictureScreen>
   late final List<CameraDescription> cameras;
   CameraController? controller;
   XFile? lastImage;
+  List<File> capturedImages = [];
 
   @override
   void initState() {
@@ -60,17 +63,28 @@ class _TakePictureScreenState extends State<TakePictureScreen>
                   : const SizedBox(),
               if (lastImage != null)
                 Align(
-                  alignment: Alignment.bottomRight,
+                  alignment: Alignment.topRight,
                   child: Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Container(
-                          decoration: BoxDecoration(
-                              border:
-                                  Border.all(color: Colors.black, width: 2.0)),
-                          width: 120.0,
-                          height: 240.0,
-                          child: Image.file(File(lastImage!.path),
-                              fit: BoxFit.cover))),
+                      child: GestureDetector(
+                        onTap: () {
+                          if (capturedImages.isEmpty) return;
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => GalleryScreen(
+                                      images:
+                                          capturedImages.reversed.toList())));
+                        },
+                        child: Container(
+                            decoration: BoxDecoration(
+                                border: Border.all(
+                                    color: Colors.black, width: 2.0)),
+                            width: 120.0,
+                            height: 240.0,
+                            child: Image.file(File(lastImage!.path),
+                                fit: BoxFit.cover)),
+                      )),
                 ),
               Align(
                   alignment: Alignment.bottomCenter,
@@ -80,7 +94,9 @@ class _TakePictureScreenState extends State<TakePictureScreen>
                       iconSize: 48.0,
                       onPressed: () async {
                         lastImage = await controller?.takePicture();
-                        setState(() {});
+                        setState(() {
+                          capturedImages.add(File(lastImage!.path));
+                        });
                       },
                       icon: const Icon(Icons.camera),
                     ),
