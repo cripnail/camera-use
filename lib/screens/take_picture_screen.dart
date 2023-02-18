@@ -4,7 +4,6 @@ import 'dart:io';
 import 'package:camera/camera.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:media/screens/my_home_page.dart';
 
 import 'gallery_screen.dart';
 
@@ -22,7 +21,7 @@ class _TakePictureScreenState extends State<TakePictureScreen>
   late final List<CameraDescription> cameras;
   CameraController? controller;
   XFile? lastImage;
-  late List<File> capturedImages = [];
+  List<File> capturedImages = [];
 
   @override
   void initState() {
@@ -75,7 +74,7 @@ class _TakePictureScreenState extends State<TakePictureScreen>
                               MaterialPageRoute(
                                   builder: (context) => GalleryScreen(
                                       images:
-                                          capturedImages.reversed.toList())));
+                                      capturedImages.reversed.toList())));
                         },
                         child: Container(
                             decoration: BoxDecoration(
@@ -96,8 +95,7 @@ class _TakePictureScreenState extends State<TakePictureScreen>
                       onPressed: () async {
                         lastImage = await controller?.takePicture();
                         setState(() {
-                          MyHomePage(title: widget.title).saveImage(File(lastImage!.path));
-                          // capturedImages.add(File(lastImage!.path));
+                          capturedImages.add(File(lastImage!.path));
                         });
                       },
                       icon: const Icon(Icons.camera),

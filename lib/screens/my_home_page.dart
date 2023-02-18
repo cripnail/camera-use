@@ -6,21 +6,12 @@ import '../nav.dart';
 import 'gallery_screen.dart';
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key? key, required this.title}) : super(key: key);
+  const MyHomePage({Key? key, required this.title}) : super(key: key);
 
   final String title;
 
-  List<File> capturedImages = [];
-
   @override
   State<MyHomePage> createState() => _MyHomePageState();
-
-  void saveImage(File image) {
-    capturedImages.add(image);
-  }
-  List<File> getImages() {
-    return capturedImages;
-  }
 }
 
 class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
@@ -29,11 +20,8 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
     {'title': 'Images', 'icon': CupertinoIcons.graph_square_fill},
   ];
   late CameraDescription camera;
-
+  late List<File> capturedImages = [];
   late List<Nav> _nav;
-
-  get images => widget.getImages();
-  // late final List<File> images;
 
   @override
   void initState() {
@@ -57,7 +45,7 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
           case 0:
             return TakePictureScreen(title: widget.title);
           case 1:
-            return GalleryScreen(images: images);
+            return GalleryScreen(images: capturedImages);
           default:
             return const Text('404 page not found');
         }
