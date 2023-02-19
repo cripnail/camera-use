@@ -12,7 +12,7 @@ class CameraApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (context) => CameraProvider(),
-      child: CameraAppWidget(),
+      child: const CameraAppWidget(),
     );
   }
 }
